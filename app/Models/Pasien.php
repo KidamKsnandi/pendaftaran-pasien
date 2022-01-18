@@ -15,7 +15,7 @@ class Pasien extends Model
     public $timestamps = true;
 
     public function spesialis() {
-         $this->belongsTo('App\Models\Spesialis', 'id_spesialis');
+        return $this->belongsTo('App\Models\Spesialis', 'id_spesialis');
     }
 
 }

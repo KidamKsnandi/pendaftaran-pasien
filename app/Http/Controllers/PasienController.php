@@ -6,12 +6,13 @@ use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\Spesialis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PasienController extends Controller
 {
     public function index()
     {
-        $pasiens = Pasien::all();
+        $pasiens = Pasien::with('spesialis')->get();
         foreach($pasiens as $pasien) {
             $pasien;
         }
@@ -53,6 +54,31 @@ class PasienController extends Controller
         return redirect()->route('pasien.index');
     }
 
+    public function edit($id)
+    {
+        // $pasien = Pasien::findOrFail($id);
+        // return view('dokter.entry', compact('pasien'));
+
+        // mengambil data pegawai berdasarkan id yang dipilih
+        $pasien = DB::table('pasiens')->where('id',$id)->get();
+        // passing data pasien yang didapat ke view edit.blade.php
+        return view('dokter.entry',['pasien' => $pasien]);
+    }
+
+    public function update(Request $request)
+    {
+        // Validasi data
+        $validated = $request->validate([
+            'detail_perawatan' => 'required',
+        ]);
+
+        $pasien = Pasien::findOrFail($request->id);
+        $pasien->detail_perawatan = $request->detail_perawatan;
+        $pasien->status = 'sudah di proses';
+        $pasien->save();
+        return redirect('/dokter/daftar-pasien');
+    }
+
     public function token(Request $request) {
 
         error_reporting(error_reporting() & ~E_NOTICE);
@@ -72,5 +98,11 @@ class PasienController extends Controller
             return view('pasien.token');
         }
 
+    }
+
+    public function dokter() {
+        $dokter = Dokter::with('spesialis')->get();
+        $dokter = Dokter::with('user')->get();
+        return view('pasien.dokter', compact('dokter'));
     }
 }

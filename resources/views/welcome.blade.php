@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <a href="{{ route('pasien.create') }}">Pendaftaran Pasien</a> |
                     <a href="/cek">Cek Token</a> |
-                    <a href="/dokter/index">Data Dokter</a> |
+                    <a href="/data-dokter">Data Dokter</a> |
                     <a href="/pesan">Hubungi Kami</a>
                 </div>
             </div>

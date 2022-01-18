@@ -5,6 +5,7 @@
    </head>
    <body>
       <h1>isi didie bar dashboard dokter = data dokter, daftar pasien siga nu video tampilan daftar pasien</h1>
+      <a href="/dokter/daftar-pasien">Daftar Pasien</a>
       <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

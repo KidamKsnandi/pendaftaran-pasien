@@ -13,11 +13,11 @@ class Dokter extends Model
     public $timestamps = true;
 
     public function spesialis() {
-         $this->belongsTo('App\Models\Spesialis', 'id_spesialis');
+        return $this->belongsTo('App\Models\Spesialis', 'id_spesialis');
     }
 
     public function user() {
-         $this->belongsTo('App\Models\User', 'id_user');
+        return $this->belongsTo('App\Models\User', 'id_user');
     }
 
      public function image()

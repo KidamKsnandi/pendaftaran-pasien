@@ -17,9 +17,5 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersSeeder::class
         ]);
-
-        $spesialis1 = Spesialis::create(['nama_spesialis' => 'Mata', 'akomodasi' => '30']);
-        $spesialis2 = Spesialis::create(['nama_spesialis' => 'Gigi', 'akomodasi' => '30']);
-        $spesialis3 = Spesialis::create(['nama_spesialis' => 'Bedah', 'akomodasi' => '30']);
     }
 }

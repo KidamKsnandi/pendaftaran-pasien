@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DokterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasienController;
@@ -32,6 +33,8 @@ Route::post('/token', [PasienController::class, 'token']);
 
 Route::resource('pasien', PasienController::class);
 
+Route::get('/data-dokter', [PasienController::class, 'dokter']);
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']],
     function() {
@@ -45,4 +48,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']],
         Route::get('/', function () {
             return view('dokter.index');
         });
+        Route::get('/daftar-pasien', [DokterController::class, 'pasien']);
+        Route::get('/pasien/edit/{id}', [PasienController::class, 'edit']);
+        Route::post('/pasien/update', [PasienController::class, 'update']);
+
     });
